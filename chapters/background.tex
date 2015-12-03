@@ -1,0 +1,114 @@
+\chapter{Background}
+
+Laugh prediction is a topic that falls under the humor recognition part of computational humor. Humor recognition has employed multiple algorithms and methods in order to determine what is humorous and what is not. This is a complicated problem as one man's laugh can be another man's groan. Despite this, people have had success working on systems from detecting one-liners to identifying knock knock jokes. These achievements are possible thanks to the fields Computational Linguistics and Machine Learning. 
+
+Since computational humor is part of the broader field of computational linguistics, we will take a quick look at that first.
+
+
+\section{Computational Linguistics}
+``Human knowledge is expressed in language. So computational linguistics is very important.''–Mark Steedman, ACL Presidential Address (2007) \cite{comp_ling}
+
+Computational linguistics is an interdisciplinary field concerned with understanding written and spoken language from a computational perspective and building artifacts that can process and produce language. \cite{comp_ling} Our method for laugh prediction in particular is concerned with parsing and understanding text. To parse text, we need to break it up into tokens using a method called tokenizing.
+
+\begin{figure}
+\centering
+\includegraphics{figures/tokenizing}
+  \caption{Example of tokenizing a sentence. \cite{ngrams}}~\label{fig:tokenizing}
+\end{figure}
+
+Tokenizing by words can be thought of as splitting the text into individual words and ignoring all white space. Punctuation is handled differently, based on what the programmer wants. An example can be seen in figure \ref{fig:tokenizing}. As you can see, there is a token for each word in the sentence and the spaces are ignored. The tokenizer we used treats punctuation as their own words, while the tokenizer in in figure \ref{fig:tokenizing} chooses to ignore them. One can also tokenize by characters instead of words.
+
+Once we tokenize the text, we can break the tokens up into N-grams in order to analyze it. N-grams are just collections of N tokens put together to be looked at. An example can be seen in figure \ref{fig:ngrams}. Compared to the tokenization picture, you can see that the unigram (1-gram) chunk is just the sentence tokenized. In the bigram (2-gram) chunk, each bigram is a pair of words that are next to each other. As you can see, the same word shows up in 2 bigrams: one with the previous word and one with the next word. The trigrams (3-grams) chunk shows how each trigram is a triple of words that works like the bigrams above it. As mentioned above, N-grams are based on the tokens provided, meaning that the way we tokenize text determines the N-grams that we analyze.
+
+\begin{figure}
+\centering
+\includegraphics[width=.7\columnwidth]{figures/ngram}
+  \caption{Example of breaking up a sentence with N-grams. \cite{ngrams}}~\label{fig:ngrams}
+\end{figure}
+
+Beyond parsing, we looked at what percent of the words in each paragraph are nouns, verbs, and adjectives. We were able to do this using a Parts of Speech (POS) tagger. A POS tagger looks at a word and tries to decide what kind of word it is. For example, it might guess that ``homework'' is a noun, and ``dreading'' is a verb. With this, all we had to do was put our tokens through the tagger, and it will tag each token with its respective POS. 
+
+\subsection{Natural Language Toolkit}
+We used the Natural Language Toolkit (NLTK) python library for POS tagging, tokenizing strings, and creating N-grams. We also took advantage of its built-in classifiers: Naive Bayes, Decision Trees, and Maximum Entropy. NLTK is an open source library that includes ``extensive software, data, and documentation'' related to the field of Natural Language Processing (NLP).\cite{NLTK} Originally created back in 2001 at the University of Pennsylvania, it has developed into an easy to use library that allows users to dive into NLP without much experience. NLTK works with Python 2 and 3, and can easily be downloaded on their website: http://www.nltk.org/. \cite{NLTK}
+
+\section{Computational Humor}
+\textit{``Computational humor is a branch of computational linguistics and artificial intelligence which uses computers in humor research. It is not to be confused with computer humor (i.e., jokes about computers, programmers, users, and computing).''} (Wikipedia)
+
+Computational humor is a relatively new area, with the first dedicated conference organized in 1996 \cite{conference}. This conference was last held again in 2012.
+
+``Work on computational humor can be divided into two classes: humor recognition and humor generation.'' \cite{xyz} Humor generation is the more commonly seen of the two. One of the earliest implementations of humor generation dates back to 1992 with a pun generator.\cite{Lessard} Since then, not only have more pun generators been made, but other flavors of joke generators have been created as well. Here is an example of a pun generated by the software STANDUP, originally designed to teach children about the English language.
+
+``What do you call a nauseous tree?''
+
+``A sick-amore!'' \cite{STANDUP}
+
+Joke generators have stuck to jokes with pre-built structures. Instead of generating whole sentences, they just fill in the blanks. This is still very impressive, as it means that the AI understands humor enough to utelize these structures in a humorous way.
+
+Although there has been much work on humor recognition, it is often seen as the harder of the two since humor generation gets the luxury of using the structures previously mentioned. \cite{metatheory} To make up for this, machine learning classification models have been used to find the differences between humorous and non-humorous text. Unfortunately, this has led to humor recognition to be designed only for specific structures of humor. For example, one-liner detection is humor recognition that works only on the one liner structure. This means that jokes that don't utilize this structure will go over this system's metaphorical head. The same is true with a method designed to tell if something is a knock knock joke. Although these are still very impressive, it is important to note that they focus on what the differences between a humorous and non-humorous text are, and not why the text itself is humorous.
+
+\section{Humor Theory}
+Humor theory is an age old field that has been traditionally divided into three branches. These are not all the branches, but only the basic traditional branches. ``Most of the humor theories ever proposed are actually mixed theories, and many contemporary researchers believe that humor in its totality is too huge and multiform a phenomenon to be incorporated into a single integrated theory.'' \cite{humor_theory} 
+
+\subsection{Theories of Incongruity, Inconsistency, or Contradiction} 
+Incongruity can be defined as the state of being out of place. Thus, these theories focus more on some objective or characteristics of a humorous text or act. This objective or characteristic seems out of place or unexpected; it seems to contradict the whole. Because of this, this branch of humor theory is more on a cognitive level.
+
+This theory assumes that every humorous act involves two frames of reference that are mutually incompatible, but share a common part. This common part allows someone to shift from one frame to another. This causes the recipient to follow the first frame of reference, maintaining that interpretation until the shift to the second frame occurs and the interpretation fails. This is when some cognitive work occurs allowing the interpretation to shift to the second frame of reference. It is believed then that ``the renewal of understanding is attended by the emotion of surprise and satisfaction, causing the reaction of laughter.'' \cite{humor_theory}. Below is an example that follows this branch of humor theory:
+
+An English bishop received the following note from the vicar of a village in his diocese: ``Milord, I regret to inform you of my wife's death. Can you possibly send me a substitute for the weekend?''\cite{humor_theory}
+
+\subsection{Theories of Superiority, Disparagement, or Criticism}
+This theory addresses the alleged aggressive characteristic of laughter. This is ``humor [that] is said to be pointed against some person or group, typically on political, ethnic or gender grounds.'' Although this branch of humor may seem to be more hostile and destructive, this does not mean that this branch of humor is objectively bad. Insulting others using the cooperative principle of joke-telling can be used to for a social intimacy between all involved. This can be seen when a group of coworkers poke fun at a dictatorial boss. It can also be used to criticize someone or the state of something. The example below is designed to criticize lawyers:
+
+``Criminal lawyer is a redundancy'' \cite{oneliners}
+
+\subsection{Theories of Release, Relief, or Relaxation}
+This branch of theories focuses more on the psychological effect of humor on the recipient. These effects are generally thought of as a way to convert stress or socially taboo aggressive impulses into something that is more socially accepted. This can be seen when someone is angry or stressed out about a subject, so they make jokes to make them feel better.
+
+
+\section{Machine Learning}
+\textit{``Machine Learning is a natural outgrowth of the intersection of Computer Science and Statistics''} \cite{machine_learning}
+
+Machine learning tries to answer the question: ``How can we build computer systems that automatically improve with experience'' \cite{machine_learning}. Algorithms attempt to accurately predict certain characteristics of data by analyzing past sample data and generating models from it. We used the supervised learning method, which involves training the AI on data that has already been labeled. Our data specifically is labeled as laugh worthy or not. Another method for machine learning is the unsupervised learning method. Unsupervised learning involves the AI generating models with data that was initially, and then labeling the data itself. The goal for both of these methods is to create a system that can label new data correctly, as shown in figure \ref{fig:machinelearning}. Supervised learning is more often used for classification, which is why we chose to use that. \cite{machine_learning}
+
+\begin{figure}
+\centering
+\includegraphics{figures/supervised-classification}
+  \caption{Supervised Classification Visualization.\cite{NLTK}}~\label{fig:machinelearning}
+\end{figure}
+
+We chose to implement machine learning since it is an effective method for solving problems that are too complex to manually design algorithms for. \cite{machine_learning} Trying to make an algorithm for humor seems impossible to get right. Machine learning algorithms provided a way for us to get accurate results without needing to have a perfect algorithm. Once we decided to utilize machine learning, we needed to pick which machine learning classifiers to use. Classifiers are the algorithms that are trained and then used to classify new data. 
+
+\subsection{Naive Bayes Classifier}
+The Naive Bayes classifier is seen as the baseline classifier as it is the simplest. It trains by going through feature sets with matching classifications and finding the probability of each feature being associated with each classification. For testing, it goes through a feature set and chooses the most probable classification based on the presence or absence of the features. It is called naive because it assumes that all features are independent of other features. \cite{NLTK}
+ 
+Let's look at an example where we were trying to figure out the genre of an article based off of the words using Naive Bayes. We would use the words in the article as the feature set, and the genres as the classifications. To determine the genre of the article, Naive Bayes will go through each feature (word) in its feature set. At each feature, it will attempt to see what genres that feature is most associated with and increase those genre's probability. It will also look at which words are significant but are not in the text, and adjust the probability accordingly. Figure \ref{fig:bayes} shows an example where the words ``dark'' and ``football'' appear in the text. ``Dark'' is often associated with the ``Murder Mystery'' genre, but it can appear in the other genres.\cite{NLTK} So it increases the probability of ``Murder Mystery'' slightly by moving the dot closer to it. But ``football'' is almost always used in the ``Sports'' genre, so the probability of ``Sports'' greatly increases. 
+ 
+ \begin{figure}
+\centering
+\includegraphics{figures/naive-bayes-triangle}
+  \caption{An abstract illustration of the procedure used by the naive Bayes classifier to choose the topic for a document.\cite{NLTK}}~\label{fig:bayes}
+\end{figure}
+
+
+\subsection{Decision Tree Classifier}
+The Decision Tree classifier is another machine learning method that can be used for classification. Like Naive Bayes, decision trees need to use supervised learning. This means that you must train it with pre-classified feature sets. \cite{NLTK}
+
+ \begin{figure}
+\centering
+\includegraphics{figures/decision-tree}
+  \caption{Decision Tree model for the name gender task.\cite{NLTK}}~\label{fig:dtree}
+\end{figure}
+
+The tree contains decision nodes and leaf nodes. Figure \ref{fig:dtree} shows a decision tree that is used to classify a name as either a male name or a female name. The decision nodes check the features being passed into the tree. In figure \ref{fig:dtree}, these would be nodes like ``first letter = k'' and ``last letter = vowel''. Based off if the decision node is true or false, the tree will go down to the next decision node or leaf node. The leaf nodes are what classify the object. In figure \ref{fig:dtree}, this can be seen as the ``m'' for male name and ``f'' for female name at the bottom of the tree. \cite{NLTK}
+
+Decision trees have the advantage of being relatively simple to understand and are well suited for any problem with many hierarchical organized decisions. However, they do have some disadvantages. Because the decision tree splits the training data to create the nodes, the amount of data used to train some of the lower nodes becomes quite small. This means that the nodes on the bottom might be trained with such a small portion of the training data that they overfit the training set.\cite{NLTK} Overfitting a training set means that the decision tree learns ``patterns that reflect idiosyncrasies of the training set rather than linguistically significant patterns in the underlying problem.''\cite{NLTK} Overfitting can be minimized by pruning away the decision nodes that don't help improve the accuracy of the tree.
+
+\subsection{Maximum Entropy}
+Maximum Entropy is a machine learning method for classification that uses a model that is similar the the one used by Naive Bayes. However, Maximum Entropy uses search techniques to find a set of parameters that will maximize the performance of the classifier, instead of using probabilities to set the model's parameters. To do this, it chooses the model parameters using iterative optimization techniques, which initializes the model's parameters to random values and then repeatedly refines them to bring them closer to the optimal solution.\cite{NLTK}
+
+Although more powerful than Naive Bayes on average, Maximum Entropy can take a very long time to run due to its iterative approach. Users should keep this in mind when their training sets, their number of features, and their number of labels are large.\cite{NLTK}
+
+\subsection{Boosting}
+Boosting is an approach to machine learning based on the idea that a strong and highly accurate predictor can be created from multiple weak and inaccurate predictors. ``Boosting solves hard machine-learning problems by forming a very smart committee of grossly incompetent but carefully selected members.'' \cite{boosting} One of the requirements of boosting is that the weak predictors are at least slightly better than random guessing. Boosting algorithms then run through the training data with the classifiers, noting what each classifier misses and adjusting how much it weighs each classifier's decision on certain features. For example, if classifier A is really good at predicting data that has Z features compared to the other classifiers, than A's classification would have more weight when predicting data with Z features. This way, when running the algorithm on new data, it attempts to play on the strengths of each classifier to improve their total value. 
+
+We chose to use boosting because we managed to produce decent results using the classifiers listed above (Naive Bayes, Max Entropy, and Decision Trees). Each classifier had varying accuracy when exposed to different feature sets. Naive Bayes performed well, for example, when only looking at the words in the segment but did terrible when looking at the N-grams. Decision trees however did well when looking at N-grams and POS tagging. Max Entropy did very well when looking at all three at once, but took an exceptionally long time. Despite our results, all of these classifiers are still weak and not accurate enough. We then chose to use boosting believing that if we used these weak classifiers with boosting to create a strong classifier then our accuracy would improve significantly.

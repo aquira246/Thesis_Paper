@@ -1,0 +1,47 @@
+\chapter{Related Works}
+
+Humor detection and laugh prediction are small areas in the field of computational linguistics. This is a result of computational humor being seen as more experimental, with its contributions being seen more in toys than in industry. Despite this, significant work has been done by researchers to try and identify laugh worthy and humorous text.
+
+\section{One-Liners}
+Mihalcea and Strapparava were some of the first to attempt to use computational humor for humor detection. They created a detector for one liners such as ``Take my advice, I don't use it anyway''.\cite{oneliners} The results were impressive, with accuracies of 84.82\% and 96.95\% when trying to identify humorous one liners from non-humorous proverbs and news article headlines respectively. This is particularly interesting because it is able to use the context held within the one line to identify if there is a joke. \cite{oneliners}
+
+To detect if something is funny, the system looks at humor-specific stylistic features and at the content of the statement. \cite{oneliners} They used a machine learning approach similar to the one described in this paper to attempt to detect humor from their content. Their results using content based analysis alone was incredibly high, but when the humor-specific stylistics were added, the increase was statistically significant. So let's take a look at what stylistics they observed.
+
+First, they decided to look at the stylistic feature of alliteration. This is because ``one-liners often rely on the readers' awareness of attention-catching sounds, through linguistic phenomena such as alliteration, word repetition, and rhyme, which produce a comic effect even if the jokes are not necessarily meant to be read aloud.'' \cite{oneliners} This is not a trend in just one-liners however, studies found that the ``phonetic properties of jokes are at least as important as their content.'' \cite{oneliners} Alliteration turned out to be the most useful indicator of humor of all the humor-specific stylistic features. Below are two examples of one-liners with their alliteration underlined:\newline
+
+``\underline{V}eni, \underline{V}idi, \underline{V}isa: \underline{I} came, \underline{I} saw, \underline{I} did a little shopping.'' \cite{oneliners}
+
+``\underline{Infan}ts don’t enjoy \underline{infan}cy like \underline{adult}s do \underline{adult}ery.'' \cite{oneliners}\newline
+
+They then looked at antonymy in the statement. This is because ``humor often relies on some type of incongruity, opposition, or other forms of apparent contradiction'' \cite{oneliners} Unfortunately, accurate identification of all these properties is too difficult to accomplish. So Mihalcea and Strapparava decided to just look at the presence of antonyms in the statement. They also looked at indirect antonymy by checking if the synonyms of the words had antonyms. Unfortunately, this was not fully complete, which may have been why antonymy did not perform too well. Although it did help identify one-liners, it was nowhere near as useful as alliteration. However, it did do better than their next humor-specific stylistic feature.\cite{oneliners} Below are two examples of one-liners with their antonymy underlined:\newline
+
+``A \underline{clean} desk is a sign of a \underline{cluttered} desk drawer.''\cite{oneliners}
+
+``Always try to be \underline{modest} and be \underline{proud} of it!''\cite{oneliners}\newline
+
+Adult slang was the last stylistic feature they used. This checked to see if adult slang such as ``sex'' and ``procreation'' was present. To do this, they had their system detect sexual-oriented words. This was the least useful feature, but it did help when identifying one-liners.\cite {oneliners} A later experiment used a similar approach to detect when a ``that's what she said'' joke could be made.\cite {twss} Below are two examples of one-liners with their adult slang underlined:\newline
+
+``The \underline{sex} was so good that even the neighbors had a cigarette.''\cite{oneliners}
+
+``Artificial \underline{Insemination}: \underline{procreation} without recreation.''\cite{oneliners}
+
+\section {Knock Knock Joke Recognition}
+Of all the jokes an AI could recognize, one would expect a knock knock joke to be the easiest. There is a simple structure to look for, so it would make sense to end it there. Unfortunately, it is not that easy, as Taylor and Mazlack found out. They created a system that was designed to identify knock knock jokes. \cite{knockknock} To do this they had to look beyond the structure to see if what was said was really a joke or not. Their system needed to check if there was a funny punchline, or it would not be considered a joke. They tested their system with a corpus of real and fake knock knock jokes. The fake jokes had coherent last lines, but they were not actually punchlines. In this example, the first joke is a real knock knock joke, while the second is a fake:\newline\newline
+``Joke 6: Knock, Knock \newline
+Who's there?\newline
+Justin\newline
+Justin who?\newline
+Justin time for dinner.\newline\newline
+Text1: Knock, Knock\newline
+Who's there?\newline
+Justin\newline
+Justin who?\newline
+Justin awoke in the middle of the night.'' \cite{knockknock}\newline\newline
+The system was able to recognize 69\% of the jokes it was given as real. Furthermore, it was able to recognize 95\% of the fake jokes as such. Although it still needs more work, it was a major step in humor recognition.
+
+\section{Double Entendre Detector}
+In a similar vein to laugh prediction, Kiddon and Brun created a system for predicting if ``That's what she said'' should be said after a sentence. In 2011, they created a system called DEviaNT that is able to detect if a sentence has enough double entendres necessary to add ``That's what she said'' to the end of the sentence. They did so by looking at the words used and the structure of the sentence. This is because ``That's What She Said Jokes'' (TWSS) are ``likely to contain nouns that are euphemisms for sexually explicit nouns and… share common structure with sentences in the erotic domain.'' \cite{twss}
+
+When looking at the words in the sentence, their system analyzed the sexiness of each word. This means that the presence of sexy words like ``hot'' or ``wet'' would increase the likelihood of it being a TWSS. In order to do this, they trained an AI using their erotica corpus for erotic text, and the Brown corpus for non-erotic text. This allowed the AI to measure the sexiness of words. For detecting the structure of a TWSS, they looked at the amount of punctuation, pronouns, and subjects in the sentence. 
+
+Although this is focused on predicting TWSS, this has some connections to our work as well. The way they looked at structure in a TWSS is similar to how we looked at the structure of a segment to determine if the audience would laugh or not. Unfortunately, we chose not to measure the sexiness of each word, but instead how often that word was used in segments that caused laughter. Although two different measurements, there are probably many words that would rank highly in both of our systems.
