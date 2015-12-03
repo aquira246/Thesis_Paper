@@ -1,6 +1,6 @@
 \chapter{System Evaluation}
 
-The goal of this system is to be able to accurately predict when laughter would show up in a TED talk. This goal entails both correctly predicting a laugh when one would occur, and not predicting a laugh when one wouldn't occur. To test this, we trained our system using approximately 80\% of the TED talk data we had collected, and then tested it against the other 20\% of the TED talk data which it had never seen before. 
+The goal of Laff-O-Tron this system is to be able to accurately predict when laughter would show up in a TED talk. This goal entails both correctly predicting a laugh when one would occur, and not predicting a laugh when one wouldn't occur. To test this, we trained Laff-O-Tron using approximately 80\% of the TED talk data we had collected, and then tested it against the other 20\% of the TED talk data which it had never seen before. 
 
 We then looked at three different measures to determine its overall accuracy: precision, recall, and F-measure. Precision ``indicates how many of the items that we identified were relevant...''\cite{NLTK}. This can be thought of as ``What percent of positives were true positives?'' Recall ``indicates how many of the relevant items that we identified…''\cite{NLTK}. Another way to look at this is ``What percent of all of the positives did we correctly identify?'' Finally, F-measure ``combines the precision and recall to give a single score''\cite{NLTK}. It is defined as:
 
@@ -12,9 +12,9 @@ Lastly, we looked at the effects of adding in certain humorous stylistics to sea
 We used the transcripts of XX (TODO) TED Talks scraped from the TED website. We then limited the talks by length of the script in order to remove any songs or extremely short TED talks that would show up. This is important because songs are not the type of talks we are looking for. Talks with incredibly small scripts are not helpful either, as they are focused on something unseen, which cannot be captured by the transcript well.
 
 \section{Evaluation}
-To evaluate the system, we first went through each TED talk and broke it up by paragraph. We skipped paragraphs that were just applause. Then, if a laugh was recorded in the paragraph or immediately after the paragraph (which was more often the case), the paragraph would be considered Laughter Positive. Otherwise it was marked Laughter Negative. The laughs themselves were also removed from the paragraphs. Next, 80\% of the paragraphs was used to train the system to correctly identify a Laughter Positive paragraph. Finally, the remaining 20\% of the paragraphs were used to test the system’s accuracy.  
+To evaluate Laff-O-Tron, we first went through each TED talk and broke it up by paragraph. We skipped paragraphs that were just applause. Then, if a laugh was recorded in the paragraph or immediately after the paragraph (which was more often the case), the paragraph would be considered Laughter Positive. Otherwise it was marked Laughter Negative. The laughs themselves were also removed from the paragraphs. Next, 80\% of the paragraphs was used to train Laff-O-Tron to correctly identify a Laughter Positive paragraph. Finally, the remaining 20\% of the paragraphs were used to test Laff-O-Tron’s accuracy.  
 
-This process was done for several versions of the system, each using different classifiers and feature sets, as well as looking for humor specific stylistics.
+This process was done for several versions of the Laff-O-Tron system, each using different classifiers and feature sets, as well as looking for humor specific stylistics.
 
 
 \section{Analysis}

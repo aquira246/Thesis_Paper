@@ -6,7 +6,7 @@ Computers are being used for amazing things. There are computers that can verify
 
 Much work has been done in the field of computational humor, both in trying to understand and generate humor. Although there has been success in humor identification, it has always been directed at understanding specific kinds of jokes. For example, understanding if a sentence can be made into a ``That's What She Said'' joke\cite{twss} is great, but their technique only works for that specific kind of joke. One liner identification \cite{oneliners} and pun generators, although great achievements in the field of computational humor, still suffer from being about a specific form of joke, and thus are hard to apply outside of their scope.
 
-This work attempts to widen the scope of humor recognition beyond narrow joke structures by attempting to predict laughter in TED talks.
+Laff-O-Tron attempts to widen the scope of humor recognition beyond narrow joke structures by attempting to predict laughter in TED talks.
 
 \section{Laugh Prediction}
 Laugh prediction is the ability to, after a line is said, predict how likely it is that it will be followed by a laugh. In a sense, this is trying to identify whether something was a punchline of a funny joke, without needing to discover what the joke is or why it is funny. We believe this can be done by analyzing paragraph structure and word choice, as well as humorous stylistics.
@@ -20,15 +20,14 @@ Laugh prediction could be used to test if something will merit a laugh in fields
 
 Lastly, laugh prediction will be able to improve human computer interaction when it comes to vocal communication. It will make the computer appear more human, as it will appear to have a sense of humor. Adding humor into human computer interaction has been proven to improve people's opinions of it.\cite{Teaching}\cite{Multi-Humoroid} Imagine a world where you can tell Siri or Cortana a joke, and it would be able to laugh (or groan) accordingly. 
 
-\section{Application}
-This work outlines an application that attempts to predict when there will be laughter in a text script. The application uses machine learning and natural language processing (NLP) to analyze the script, and make predictions after each line based off of the training scripts. We trained our application using transcripts from TED Talks. The application was successfully able to predict laughter. We believe that with a different training corpus, this application can be used with other environments such as political speeches.
+\section{Laff-O-Tron}
+This work outlines an application, referred to as Laff-O-Tron, which attempts to predict when there will be laughter in a text script. Laff-O-Tron uses machine learning and natural language processing (NLP) to analyze the script, and make predictions after each line based off of the training scripts. Laff-O-Tron was trained using transcripts from TED Talks and was successfully able to predict laughter. We believe that with a different training corpus, Laff-O-Tron can be used to predict laughter or even applause in other environments such as political speeches.
 
-\subsection{Why TED Talks? Does It Matter?}
-I would like you to think up something you once heard that was really funny and made you laugh loudly. A literal ``LOL'' moment, if you will. I'll give you 5 minutes.
+\section{Why TED Talks?}
+In order to train Laff-O-Tron, we needed data where the laughter had already been identified. Rather than manually adding laughter to scripts we already had, we decided to find new scripts that already had laughter marked down. After a thorough investigation, we found that TED Talk transcripts had audience laughter already marked, and decided to use them as our data. This design choice greatly impacts how Laff-O-Tron works, as environment has an incredible impact on humor. The kind of humor that is prevalent in bars, for example, is different than the humor found at a wedding. Thus, Laff-O-Tron is designed to predict laughter in a live talk environment. 
 
-Got it? Good. Now imagine you were at a bar, drinking whatever you choose, surrounded by your friends who are having a great time. Do you think your funny moment would get them to laugh? Most likely yes, as that atmosphere can make most things funny. Now try this again but at a sad funeral. Chances are that you wouldn't get a laugh at such a solemn event. Humor is as much about the environment as it is about what is said and done. Because of this, we had to pick an environment to train our system on. We chose TED Talks because TED Talk transcripts were the only ones we found where laughter is recorded. 
 
 \section{Contribution}
-The goal of this project was to show that it is possible for a computer system to be able to predict laughter without needing depending on a narrow joke structure such as knock knock joke or pun. Although the project was a success, more research needs to be done to generalize this beyond TED Talks. 
+The goal of this project was to show that it is possible for a computer system to be able to predict laughter without needing depending on a narrow joke structure such as knock knock joke or pun. Although Laff-O-Tron was a success, more research needs to be done to generalize this beyond TED Talks. 
 
 This project has also contributed to the field of NLP as a whole by creating a corpus of TED Talks, free to use by anyone.
